@@ -2,6 +2,7 @@
 
 source ./capture_config
 source ./regex.sh
+source ./post.sh
 
 fn_capture()
 {
@@ -31,6 +32,8 @@ fn_capture()
   fn_match "$OCR"
   MATCH_RET_CODE=$?
   if [ "$MATCH_RET_CODE" -ne "0" ]; then
+    echo "Posting $OCR..."
+    post "$OCR" &
     return $MATCH_RET_CODE
   else # remove files
     rm $IMG_NAME
