@@ -17,8 +17,16 @@ C_H_OFF=$((C_H_OFF-BOT_OFF))
 CROP_OFF_GEO="+${C_W_OFF}+${C_H_OFF}"
 CROP_GEO="${CROP_RES_GEO}${CROP_OFF_GEO}"
 echo "Crop arg: ${CROP_GEO}"
-
+# capture
 import -window $WINDOW_ID -resize $RESIZE_ARG $IMG_NAME
 convert $IMG_NAME -crop $CROP_GEO -negate -compress none $CROP_FILENAME
-./ocr.sh $CROP_FILENAME
-# rm $CROP_FILENAME
+# ocr
+OCR="$(./ocr.sh $CROP_FILENAME)"
+echo "Ocr: ${OCR}"
+MATCH="$(./regex.sh "$OCR")"
+if [ ! -z "$MATCH" ]; then
+  echo "Found: $MATCH"
+else # remove files
+  rm $IMG_NAME
+  rm $CROP_FILENAME
+fi
