@@ -1,5 +1,5 @@
 SET="^SET .*[^M]$"
-SET100="^SET100 .*[^M]$"
+SET50="^SET50 .*[^M]$"
 
 fn_match()
 {
@@ -7,8 +7,8 @@ fn_match()
     echo -e "\tfound SET!"
     echo "$(date) $1" >> log.txt
     return 1
-  elif [[ "$1" =~ $SET100 ]]; then
-    echo -e '\tfound SET100!'
+  elif [[ "$1" =~ $SET50 ]]; then
+    echo -e '\tfound SET50!'
     echo "$(date) $1" >> log.txt
     return 2
   fi
