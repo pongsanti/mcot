@@ -1,5 +1,7 @@
 # t model
 class T < Sequel::Model
+  set_primary_key :rowid
+
   class << self
     def sel
       select(:rowid, :file, :ocr, :normalized, :post)
