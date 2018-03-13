@@ -4,6 +4,10 @@ fn_filename() {
   echo "$(date +"%Y-%m-%dt%T")"
 }
 
+fn_filename_ext() {
+  echo "$1.jpg"
+}
+
 fn_crop_filename() {
   echo "$1_c.jpg"
 }

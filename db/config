@@ -1,1 +1,2 @@
 DB_NAME=mcot
+DB_PATH=/home/popsicle/mcot/db/${DB_NAME}.db
