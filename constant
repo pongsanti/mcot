@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SET=SET
+SET50=SET50
+NOT_MATCH=NOT_MATCH
+SET_REGEX="^SET .*[^M]$"
+SET50_REGEX="^SET50 .*[^M]$"

@@ -1,16 +1,18 @@
-SET="^SET .*[^M]$"
-SET50="^SET50 .*[^M]$"
+#!/bin/bash
+
+source ./constant
 
 fn_match()
 {
-  if [[ "$1" =~ $SET ]]; then
-    echo -e "\tfound SET!"
-    echo "$(date) $1" >> log.txt
-    return 1
-  elif [[ "$1" =~ $SET50 ]]; then
-    echo -e '\tfound SET50!'
-    echo "$(date) $1" >> log.txt
-    return 2
+  if [[ "$1" =~ $SET_REGEX ]]; then
+    fn_log "\tfound SET!"
+    fn_log_to_file "$(date) $1"
+    echo SET
+  elif [[ "$1" =~ $SET50_REGEX ]]; then
+    fn_log "\tfound SET50!"
+    fn_log_to_file "$(date) $1"
+    echo SET50
+  else
+    echo NOT_MATCH
   fi
-  return 0
 }
