@@ -13,8 +13,8 @@ class Post
     success = true
     filepath = "#{FILE_PATH}/#{@filename}"
     begin
-      RestClient.post(URL, file: File.new(filepath, 'rb'))
-    rescue RestClient::ExceptionWithResponse => err
+      RestClient.post(URL, article: {text: @value, file: File.new(filepath, 'rb') })
+    rescue StandardError => err
       puts err
       success = false
     end
