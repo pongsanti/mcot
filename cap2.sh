@@ -28,20 +28,3 @@ fn_capture()
 
   echo $FNAME
 }
-
-  # # ocr
-  # OCR="$(./ocr.sh $CROP_FILENAME)"
-  # fn_log "Ocr:\t\t${OCR}"
-
-  # fn_match "$OCR"
-  # MATCH_RET_CODE=$?
-  # if [ "$MATCH_RET_CODE" -ne "0" ]; then
-  #   fn_log "Posting $OCR..."
-  #   post "$OCR" &
-  #   return $MATCH_RET_CODE
-  # else # remove files
-  #   rm $IMG_NAME
-  #   rm $CROP_FILENAME
-  #   return 0
-  # fi
-# }

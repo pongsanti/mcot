@@ -30,6 +30,8 @@ do
     # remove files
     fn_remove_unmatched $FILE
   fi
-  sleep 1.5
+
+  sleep $SLEEP_IN_SECOND
+  
   fn_log "-------\n"
 done
