@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source ./util.sh
 source ./cap2.sh
 
 while [ 1 ]
