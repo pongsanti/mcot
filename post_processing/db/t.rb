@@ -2,7 +2,7 @@
 class T < Sequel::Model
   class << self
     def sel
-      select(:rowid, :file, :ocr, :post)
+      select(:rowid, :file, :ocr, :normalized, :post)
     end
 
     def not_posted
