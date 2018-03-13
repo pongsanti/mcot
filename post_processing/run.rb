@@ -1,11 +1,17 @@
 require 'dotenv/load'
 require_relative './load_path'
 require 'db/db'
+require 'ocr_processor/ocr_processor'
 require 'post/post'
 
 def post(t)
   p = Post.new(t.ocr,'2018-03-13t20:24:10.jpg')
   p.post
+end
+
+def normalize(ocr)
+  p = OcrProcessor.new(ocr)
+  p.normalize
 end
 
 def update_flag(t)
@@ -18,6 +24,8 @@ while true
     puts t.values
 
     # process ocr
+    normalized = normalize(t.ocr)
+    
     # post request
     result = post(t)
     update_flag(t) if result
