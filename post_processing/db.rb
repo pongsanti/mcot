@@ -2,4 +2,6 @@ require 'sequel'
 
 URL = ENV['DB_PATH']
 
-DB = Sequel.sqlite.connect(database: URL)
+DB = Sequel.connect("sqlite://#{URL}")
+
+require 'model/t'
