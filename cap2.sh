@@ -23,8 +23,8 @@ fn_capture()
   CROP_GEO="${CROP_RES_GEO}${CROP_OFF_GEO}"
   fn_log "Crop arg:\t${CROP_GEO}"
   # capture
-  import -window $WINDOW_ID -resize $RESIZE_ARG $IMG_NAME
-  convert $IMG_NAME -crop $CROP_GEO -colorspace gray -lat 25x25+5% -compress none $CROP_FILENAME
+  import -window $WINDOW_ID -resize $RESIZE_ARG ${FILE_PATH}/${IMG_NAME}
+  convert ${FILE_PATH}/${IMG_NAME} -crop $CROP_GEO -colorspace gray -lat 25x25+5% -compress none ${FILE_PATH}/${CROP_FILENAME}
 
   echo $FNAME
 }

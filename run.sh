@@ -12,7 +12,7 @@ do
   FILE=$( fn_capture )
   CROP_FILE=$( fn_crop_filename $FILE )
   # ocr
-  OCR=$( fn_ocr $CROP_FILE)
+  OCR=$( fn_ocr ${FILE_PATH}/${CROP_FILE})
   MATCH=$( fn_match "$OCR" )
 
   if [ "$MATCH" != "$NOT_MATCH" ]; then
@@ -28,7 +28,7 @@ do
       LAST_OCR=""
     fi
     # remove files
-    fn_remove_unmatched $FILE
+    fn_remove_unmatched $FILE_PATH $FILE
   fi
 
   sleep $SLEEP_IN_SECOND

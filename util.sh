@@ -21,7 +21,7 @@ fn_log_to_file() {
 }
 
 fn_remove_unmatched() {
-  CROP_FILE=$( fn_crop_filename $1 )
-  rm ${1}.jpg
-  rm $CROP_FILE
+  CROP_FILE=$( fn_crop_filename $2 )
+  rm $1/$2.jpg
+  rm $1/$CROP_FILE
 }
