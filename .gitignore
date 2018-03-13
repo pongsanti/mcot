@@ -3,3 +3,4 @@
 *.tif
 *.txt
 *.db
+.env
