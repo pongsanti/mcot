@@ -16,17 +16,18 @@ do
   MATCH=$( fn_match "$OCR" )
 
   if [ "$MATCH" != "$NOT_MATCH" ]; then
-    LAST_FILE=$( fn_filename_ext $FILE )
-    LAST_OCR=$OCR
-  else
-    if [ "$LAST_OCR" != "" ]; then
-      fn_log "Put $LAST_OCR to db..."
-      fn_insert "$LAST_FILE" "$LAST_OCR" 0
-      fn_log "Success"
-      # reset last match
-      LAST_FILE=""
-      LAST_OCR=""
+    if [ "$GROUP_ID" == "" ]; then
+      GROUP_ID=$( date +"%s" )
     fi
+
+    FILE_NAME=$( fn_filename_ext $FILE )
+    
+    fn_log "Group:\t $GROUP_ID"
+    fn_log "\t\tPut $LAST_OCR to db..."
+    fn_insert "$GROUP_ID" "$FILE_NAME" "$OCR"
+    fn_log "\t\tSuccess"
+  else
+    GROUP_ID="" #reset GROUP_ID -- start new group
     # remove files
     fn_remove_unmatched $FILE_PATH $FILE
   fi
