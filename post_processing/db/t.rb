@@ -7,8 +7,8 @@ class T < Sequel::Model
       select(:rowid, :file, :ocr, :normalized, :post)
     end
 
-    def gid_not_posted
-      select(:gid).group(:gid).having(post: 0).order(:rowid)
+    def gid_not_posted_and_ready
+      select(:gid).group(:gid).having(post: 0, ready: 1).order(:rowid)
     end
 
     def by_gid(gid)

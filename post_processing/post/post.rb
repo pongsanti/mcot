@@ -12,8 +12,7 @@ class Post
   def post
     success = true
     filepath = "#{FILE_PATH}/#{@filename}"
-    crop_filename = @filename.insert(@filename.index('.'), '_c')
-    crop_filepath = "#{FILE_PATH}/#{crop_filename}"
+    crop_filepath = String.new(filepath).insert(filepath.index('.'), '_c')
 
     begin
       RestClient.post(URL,

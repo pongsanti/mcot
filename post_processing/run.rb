@@ -54,7 +54,7 @@ end
 
 loop do
   logger.info("waked up...")
-  T.gid_not_posted.all.each do |t|
+  T.gid_not_posted_and_ready.all.each do |t|
     logger.info("Processing group #{t.gid}")
     process_group(t.gid)
   end
