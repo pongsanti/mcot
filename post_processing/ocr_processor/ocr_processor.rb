@@ -6,22 +6,21 @@ class OcrProcessor
 
   def normalize
     res = @ocr.strip
-    res = res.sub('V', '-')
-    res = res.sub('A', '+')
-    
-    #get the last path
-    arr = res.split
-    if arr.length == 3
-      arr[2] = normalize_last_part(arr[2])
-    end
 
-    res = arr.join(' ')
-  end
+    arr = res.split(' ')
+    if arr.length == 4
+      # replace 50
+      type = arr[0]
+      if type.length == 5 # SET50
+        type[3..4] = '50'
+        arr[0] = type
+      end
 
-  def normalize_last_part(num)
-    unless num.include? '.'
-      num = num.insert(-3, '.')
+      arr[2].sub!('+', '-')
+      arr[2].sub!('7', '-')
+      arr[2].sub!('A', '+')
+      arr[2].sub!('4', '+')
     end
-    num
+    arr.join(' ')
   end
 end
