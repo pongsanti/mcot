@@ -1,5 +1,8 @@
 #
 class OcrProcessor
+
+  YEN = "\u00A5".encode('utf-8')
+
   def initialize(ocr)
     @ocr = ocr
   end
@@ -19,6 +22,8 @@ class OcrProcessor
       arr[2].sub!('+', '-')
       arr[2].sub!('7', '-')
       arr[2].sub!('T', '-')
+      arr[2].sub!('v', '-')
+      arr[2].sub!(YEN, '-')
       arr[2].sub!('A', '+')
       arr[2].sub!('4', '+')
       arr[2].sub!('a', '+')
