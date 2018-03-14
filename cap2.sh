@@ -24,6 +24,7 @@ fn_capture()
   fn_log "Crop arg:\t${CROP_GEO}"
   # capture
   import -window $WINDOW_ID -resize $RESIZE_ARG ${FILE_PATH}/${IMG_NAME}
+  convert ${FILE_PATH}/${IMG_NAME} -fill white -undercolor '#00000080' -gravity SouthEast -annotate +0+5 "$(date)" ${FILE_PATH}/${IMG_NAME}
   convert ${FILE_PATH}/${IMG_NAME} -crop $CROP_GEO -colorspace gray -lat 20x20+5% -negate ${FILE_PATH}/${CROP_FILENAME}
 
   echo $FNAME
