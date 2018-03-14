@@ -12,8 +12,15 @@ class Post
   def post
     success = true
     filepath = "#{FILE_PATH}/#{@filename}"
+    crop_filename = @filename.insert(@filename.index('.'), '_c')
+    crop_filepath = "#{FILE_PATH}/#{crop_filename}"
+
     begin
-      RestClient.post(URL, article: {text: @value, file: File.new(filepath, 'rb') })
+      RestClient.post(URL,
+        article: { text: @value,
+                   file: File.new(filepath, 'rb'),
+                   crop_file: File.new(crop_filepath, 'rb') }
+      )
     rescue StandardError => err
       puts err
       success = false
