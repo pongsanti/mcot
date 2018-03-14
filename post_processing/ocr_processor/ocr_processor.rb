@@ -18,8 +18,10 @@ class OcrProcessor
 
       arr[2].sub!('+', '-')
       arr[2].sub!('7', '-')
+      arr[2].sub!('T', '-')
       arr[2].sub!('A', '+')
       arr[2].sub!('4', '+')
+      arr[2].sub!('a', '+')
     end
     arr.join(' ')
   end
