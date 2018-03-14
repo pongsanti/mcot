@@ -58,5 +58,5 @@ loop do
     logger.info("Processing group #{t.gid}")
     process_group(t.gid)
   end
-  sleep 10
+  sleep 5
 end
