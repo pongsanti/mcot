@@ -5,6 +5,8 @@ LOG = Logger.new(STDOUT)
 require_relative './load_path'
 
 require 'db/db'
+DB.loggers << LOG
+
 require 'ocr_processor/ocr_processor'
 require 'ocr_processor/group_processor'
 require 'post/post'
@@ -23,8 +25,11 @@ def normalize(ocr)
   p.normalize
 end
 
-def update_flag(gid)
-  T.gid_posted(gid)
+def update_flag(ts)
+  ts.each do |t|
+    t.post = 1
+    t.save
+  end
 end
 
 def process_group(gid)
@@ -34,7 +39,7 @@ def process_group(gid)
   posted = ocr_process(g.process)
   logger.info("Post result: #{posted}")
   # update flag
-  update_flag(gid) if posted
+  update_flag(ts) if posted
   logger.info('-----')
 end
 
@@ -48,9 +53,10 @@ def ocr_process(t)
 end
 
 loop do
+  logger.info("waked up...")
   T.gid_not_posted.all.each do |t|
     logger.info("Processing group #{t.gid}")
     process_group(t.gid)
   end
-  sleep 5
+  sleep 10
 end
