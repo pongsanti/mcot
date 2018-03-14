@@ -27,7 +27,11 @@ do
     fn_insert "$GROUP_ID" "$FILE_NAME" "$OCR"
     fn_log "\t\tSuccess"
   else
-    GROUP_ID="" #reset GROUP_ID -- start new group
+    if [ "$GROUP_ID" != "" ]; then
+      fn_log "Group $GROUP_ID:\t set ready"
+      fn_set_ready "$GROUP_ID"
+      GROUP_ID="" #reset GROUP_ID -- start new group
+    fi
     # remove files
     fn_remove_unmatched $FILE_PATH $FILE
   fi
