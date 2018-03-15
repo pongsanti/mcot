@@ -3,4 +3,6 @@
 *.tif
 *.txt
 *.db
+*.pid
+*.id
 .env
