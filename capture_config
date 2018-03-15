@@ -1,7 +1,7 @@
 # 1) 1280x720 | 390x40 | 21
 # 2) 1024x576 | 310x35 | 16
 
-WINDOW_ID=0x360001c
+WINDOW_ID=$(cat windowid/vlcwindow.id)
 #WIDTH=1024
 #HEIGHT=576
 #CROP_W=310
