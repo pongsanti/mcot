@@ -25,3 +25,9 @@ fn_remove_unmatched() {
   rm $1/$2.jpg
   rm $1/$CROP_FILE
 }
+
+fn_all_white() {
+  PERCENT=$( convert "$1"  -threshold 65534 -format "%[fx:100*image.mean]" info: )
+  fn_log "white % = $PERCENT"
+  echo $( printf '%.*f\n' 0 $PERCENT )
+}
