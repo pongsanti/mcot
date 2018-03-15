@@ -10,6 +10,7 @@ DB.loggers << LOG
 require 'ocr_processor/ocr_processor'
 require 'ocr_processor/group_processor'
 require 'post/post'
+require 'file/file_op'
 
 def logger
   LOG
@@ -29,6 +30,9 @@ def update_flag(ts)
   ts.each do |t|
     t.post = 1
     t.save
+
+    # delete other candidate files
+    FileOp.new(t.file).delete unless t.normalized
   end
 end
 

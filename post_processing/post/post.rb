@@ -1,24 +1,22 @@
 require 'rest_client'
+require 'file/file_op'
 # Post multipart form data
 class Post
   URL = ENV['POST_URL']
-  FILE_PATH = ENV['FILE_PATH']
-
+  
   def initialize(value, filename)
     @value = value
-    @filename = filename
+    @file_op = FileOp.new(filename)
   end
 
   def post
     success = true
-    filepath = "#{FILE_PATH}/#{@filename}"
-    crop_filepath = String.new(filepath).insert(filepath.index('.'), '_c')
 
     begin
       RestClient.post(URL,
         article: { text: @value,
-                   file: File.new(filepath, 'rb'),
-                   crop_file: File.new(crop_filepath, 'rb') }
+                   file: File.new(@file_op.path, 'rb'),
+                   crop_file: File.new(@file_op.crop_path, 'rb') }
       )
     rescue StandardError => err
       puts err
