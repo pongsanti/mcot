@@ -2,7 +2,6 @@
 
 source ./capture_config
 source ./regex.sh
-source ./post.sh
 
 fn_capture()
 {

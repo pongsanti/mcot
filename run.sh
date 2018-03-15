@@ -7,6 +7,8 @@ source ./ocr.sh
 source ./db/util.sh
 source ./db/config
 
+fn_log "WINDOW_ID:\t$WINDOW_ID\n"
+
 while [ 1 ]
 do
   FILE=$( fn_capture )
