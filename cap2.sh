@@ -5,6 +5,8 @@ source ./regex.sh
 
 fn_capture()
 {
+  CAP_START=`date +%s`
+
   FNAME=$( fn_filename )
   IMG_NAME="$FNAME.jpg"
   CROP_FILENAME=$( fn_crop_filename $FNAME )
@@ -24,7 +26,10 @@ fn_capture()
   # capture
   import -window $WINDOW_ID -resize $RESIZE_ARG ${FILE_PATH}/${IMG_NAME}
   convert ${FILE_PATH}/${IMG_NAME} -fill white -undercolor '#00000080' -gravity SouthEast -annotate +0+5 "$(date)" ${FILE_PATH}/${IMG_NAME}
-  convert ${FILE_PATH}/${IMG_NAME} -crop $CROP_GEO -colorspace gray -lat 20x20+5% -negate ${FILE_PATH}/${CROP_FILENAME}
+  convert ${FILE_PATH}/${IMG_NAME} -crop $CROP_GEO -colorspace gray -lat 10x10+5% -negate ${FILE_PATH}/${CROP_FILENAME}
 
+  CAP_END=`date +%s`
+  RUNTIME=$(($CAP_END - $CAP_START))
+  fn_log "\t\t\tCAP in seconds: $RUNTIME"
   echo $FNAME
 }
